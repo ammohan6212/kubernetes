@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order
+  namespace: app-namespace
+  labels:
+    app: ecommerce
+    tier: backend
+    component: order-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ecommerce
+      component: order-service
+  template:
+    metadata:
+      labels:
+        app: ecommerce
+        tier: backend
+        component: order-service
+    spec:
+      containers:
+        - name: order
+          image: order:1.0
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: order
+  namespace: app-namespace
+  labels:
+    app: ecommerce
+    tier: backend
+    component: order-service
+spec:
+  selector:
+    component: order-service
+  ports:
+    - port: 8080
+      targetPort: 8080
