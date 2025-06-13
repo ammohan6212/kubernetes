@@ -31,14 +31,16 @@ kind: Service
 metadata:
   name: frontend
   namespace: app-namespace
-  labels:
-    app: ecommerce
-    tier: frontend
-    component: frontend-ui
+  annotations:
+    service.beta.kubernetes.io/azure-load-balancer-resource-group: mohan-devops
 spec:
-  selector:
-    component: frontend-ui
-  ports:
-    - port: 80
-      targetPort: 80
   type: LoadBalancer
+  loadBalancerIP: 20.151.235.31  # Use your static IP or newly created one
+  selector:
+    app: ecommerce
+    component: frontend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+
