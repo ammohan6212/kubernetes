@@ -31,13 +31,14 @@ kind: Service
 metadata:
   name: frontend
   namespace: app-namespace
+  annotations:
+    service.beta.kubernetes.io/azure-load-balancer-resource-group: "mohan-devops"
 spec:
   type: LoadBalancer
+  loadBalancerIP: 20.151.235.31
   selector:
     app: ecommerce
     component: frontend
   ports:
-    - protocol: TCP
-      port: 80
+    - port: 80
       targetPort: 80
-
