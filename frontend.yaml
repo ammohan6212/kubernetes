@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: front:1.0
+          image: mohan14242ai/front:1.0
           ports:
             - containerPort: 80
 ---

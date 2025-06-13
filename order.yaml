@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: order
-          image: order:1.0
+          image: mohan14242ai/order:1.0
           ports:
             - containerPort: 8080
 ---

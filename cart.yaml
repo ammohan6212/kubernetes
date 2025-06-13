@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: cart
-          image: cart:1.0
+          image: mohan14242ai/cart:1.0
           ports:
             - containerPort: 5000
 ---

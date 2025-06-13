@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: payment
-          image: payment:1.0
+          image: mohan14242ai/payment:1.0
           ports:
             - containerPort: 8081
 ---

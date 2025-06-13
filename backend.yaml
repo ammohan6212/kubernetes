@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: user:1.0
+          image: mohan14242ai/user:1.0
           ports:
             - containerPort: 8000
           env:
