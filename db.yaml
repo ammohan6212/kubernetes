@@ -30,29 +30,6 @@ spec:
               value: postgres
             - name: POSTGRES_DB
               value: mydb
-          volumeMounts:
-            - mountPath: /var/lib/postgresql/data
-              name: postgres-storage
-      volumes:
-        - name: postgres-storage
-          persistentVolumeClaim:
-            claimName: postgres-pvc
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: postgres-pvc
-  namespace: app-namespace
-  labels:
-    app: ecommerce
-    tier: db
-    component: postgres-db
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 1Gi
 ---
 apiVersion: v1
 kind: Service
