@@ -35,8 +35,8 @@ spec:
   type: NodePort
   selector:
     app: ecommerce
-    component: frontend
+    component: frontend-ui  # ✅ Match the pod's label
   ports:
     - port: 80
       targetPort: 80
-      nodePort: 31234  # Optional: choose a static port between 30000-32767
+      nodePort: 31234  # ✅ Valid NodePort
