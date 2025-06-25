@@ -3,41 +3,33 @@ kind: Deployment
 metadata:
   name: order
   namespace: app-namespace
-  labels:
-    app: ecommerce
-    tier: backend
-    component: order-service
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ecommerce
-      component: order-service
+      app: order
   template:
     metadata:
       labels:
-        app: ecommerce
-        tier: backend
-        component: order-service
+        app: order
     spec:
       containers:
         - name: order
           image: mohan14242ai/order:1.0
           ports:
             - containerPort: 8080
+          env:
+            - name: DATABASE_URL
+              value: postgresql://postgres:postgres@db1:5432/mydb
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: order
   namespace: app-namespace
-  labels:
-    app: ecommerce
-    tier: backend
-    component: order-service
 spec:
   selector:
-    component: order-service
+    app: order
   ports:
     - port: 8080
       targetPort: 8080

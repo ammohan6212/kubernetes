@@ -1,34 +1,33 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend
+  name: mongo
   namespace: app-namespace
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: frontend
+      app: mongo
   template:
     metadata:
       labels:
-        app: frontend
+        app: mongo
     spec:
       containers:
-        - name: frontend
-          image: mohan14242ai/front:1.0
+        - name: mongo
+          image: mongo:6.0
           ports:
-            - containerPort: 80
+            - containerPort: 27017
+          command: ["mongod", "--noauth"]
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: frontend
+  name: mongo
   namespace: app-namespace
 spec:
-  type: NodePort
   selector:
-    app: frontend
+    app: mongo
   ports:
-    - port: 80
-      targetPort: 80
-      nodePort: 30080
+    - port: 27017
+      targetPort: 27017

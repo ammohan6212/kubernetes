@@ -3,41 +3,33 @@ kind: Deployment
 metadata:
   name: cart
   namespace: app-namespace
-  labels:
-    app: ecommerce
-    tier: backend
-    component: cart-service
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ecommerce
-      component: cart-service
+      app: cart
   template:
     metadata:
       labels:
-        app: ecommerce
-        tier: backend
-        component: cart-service
+        app: cart
     spec:
       containers:
         - name: cart
           image: mohan14242ai/cart:1.0
           ports:
             - containerPort: 5000
+          env:
+            - name: MONGODB_URI
+              value: mongodb://mongo:27017/mycartdb
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: cart
   namespace: app-namespace
-  labels:
-    app: ecommerce
-    tier: backend
-    component: cart-service
 spec:
   selector:
-    component: cart-service
+    app: cart
   ports:
     - port: 5000
       targetPort: 5000

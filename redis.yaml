@@ -3,41 +3,35 @@ kind: Deployment
 metadata:
   name: redis
   namespace: app-namespace
-  labels:
-    app: ecommerce
-    tier: cache
-    component: redis-cache
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ecommerce
-      component: redis-cache
+      app: redis
   template:
     metadata:
       labels:
-        app: ecommerce
-        tier: cache
-        component: redis-cache
+        app: redis
     spec:
       containers:
         - name: redis
           image: redis:7.2
           ports:
             - containerPort: 6379
+          livenessProbe:
+            exec:
+              command: ["redis-cli", "ping"]
+            initialDelaySeconds: 10
+            periodSeconds: 10
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: redis
   namespace: app-namespace
-  labels:
-    app: ecommerce
-    tier: cache
-    component: redis-cache
 spec:
   selector:
-    component: redis-cache
+    app: redis
   ports:
     - port: 6379
       targetPort: 6379

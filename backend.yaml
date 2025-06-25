@@ -3,22 +3,15 @@ kind: Deployment
 metadata:
   name: backend
   namespace: app-namespace
-  labels:
-    app: ecommerce
-    tier: backend
-    component: backend-api
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ecommerce
-      component: backend-api
+      app: backend
   template:
     metadata:
       labels:
-        app: ecommerce
-        tier: backend
-        component: backend-api
+        app: backend
     spec:
       containers:
         - name: backend
@@ -36,13 +29,8 @@ kind: Service
 metadata:
   name: backend
   namespace: app-namespace
-  labels:
-    app: ecommerce
-    tier: backend
-    component: backend-api
 spec:
   selector:
-    component: backend-api
+    app: backend
   ports:
     - port: 8000
-      targetPort: 8000

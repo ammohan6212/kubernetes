@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: db
+  name: db1
   namespace: app-namespace
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: db
+      app: db1
   template:
     metadata:
       labels:
-        app: db
+        app: db1
     spec:
       containers:
-        - name: db
+        - name: db1
           image: postgres:14
           ports:
             - containerPort: 5432
@@ -29,10 +29,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: db
+  name: db1
   namespace: app-namespace
 spec:
   selector:
-    app: db
+    app: db1
   ports:
     - port: 5432
