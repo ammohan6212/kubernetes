@@ -13,11 +13,6 @@ spec:
       labels:
         app: cart
     spec:
-      initContainers:
-        - name: wait-for-mongo
-          image: busybox
-          command:
-            ['sh', '-c', 'until nc -z mongo 27017; do echo waiting for mongo; sleep 2; done;']
       containers:
         - name: cart
           image: mohan14242ai/cart:1.0

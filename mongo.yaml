@@ -18,7 +18,6 @@ spec:
           image: mongo:6.0
           ports:
             - containerPort: 27017
-          command: ["mongod", "--noauth"]
 ---
 apiVersion: v1
 kind: Service
