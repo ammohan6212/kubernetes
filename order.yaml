@@ -16,6 +16,7 @@ spec:
       containers:
         - name: order
           image: mohan14242ai/order:1.0
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
           env:

@@ -16,6 +16,7 @@ spec:
       containers:
         - name: cart
           image: mohan14242ai/cart:1.0
+          imagePullPolicy: Always
           ports:
             - containerPort: 5000
           env:
