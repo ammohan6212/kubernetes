@@ -1,0 +1,21 @@
+kubectl create -f namespace.yaml 
+kubectl create -f deployment.yaml 
+kubectl create -f gatewat.yaml 
+kubectl create -f virtual-service.yaml 
+kubectl create -f destination.yaml 
+
+
+kubectl apply -f namespace.yaml 
+kubectl apply -f deployment.yaml 
+kubectl apply -f gatewat.yaml 
+kubectl apply -f virtual-service.yaml 
+kubectl apply -f destination.yaml 
+
+
+
+kubectl delete -f destination.yaml 
+kubectl delete -f virtual-service.yaml 
+kubectl delete -f gatewat.yaml 
+kubectl delete -f deployment.yaml 
+kubectl delete -f namespace.yaml 
+
